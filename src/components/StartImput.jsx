@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import { setStart } from '../store/slices/start.slice';
 const StartImput = () => {
 
-    const [input, setInput] = useState('');
+    const [inputt, setInput] = useState('');
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
     const enterName = (e) => {
-        dispatch(setStart(input))
+        dispatch(setStart(inputt))
         navigate('/poke-characters');
-            }
+    }
 
     return (
         <div>
             <h2>star</h2>
-            <input type="text" onChange={e=> setInput(e.target.value)} value={input}  />
+            <input type="text" onChange={e=> setInput(e.target.value)} value={inputt}  />
             <button onClick={enterName} >Start</button>
         </div>
     );
