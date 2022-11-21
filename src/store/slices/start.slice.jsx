@@ -5,10 +5,10 @@ export const startSlice = createSlice({
     initialState: "",
     reducers: {
         setStart: (state, action) => {
-            const input = action.payload;
-            return input
+            const inputt = action.payload;
+            return inputt;
         }
-        }
+    }
     
 });
 export const {setStart} = startSlice.actions;
