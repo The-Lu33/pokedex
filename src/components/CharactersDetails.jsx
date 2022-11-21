@@ -20,7 +20,7 @@ const CharactersDetails = () => {
         <li>
           {character.name}
         </li>
-        <img src={character?.sprites.other.dream_world.front_default} alt="" />
+        <img src={character?.sprites?.other.dream_world.front_default} alt="" />
       </ul>
 
     </div>

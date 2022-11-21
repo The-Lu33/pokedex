@@ -20,7 +20,6 @@ const Characters = () => {
   const navigate = useNavigate();
   const [characterName, setcharacterName] = useState("")
   const [speciePok, setspeciePok] = useState([])
-  
   const pokemonPaginated = characters.slice(firsIndex, lastIndex)
   useEffect(() => {
     axios
@@ -40,7 +39,7 @@ const Characters = () => {
 
   const searchCharacter = () => {
     alert(characterName)
-    navigate(`/characters/${characterName.toLowerCase}`)
+    navigate(`/characters/${characterName}`)
 
 
   }
@@ -62,18 +61,6 @@ const Characters = () => {
         onChange={e => setcharacterName(e.target.value)}
       />
       <button onClick={searchCharacter}>Search</button>
-      <div>
-        <button onClick={()=>setPage(page-1)}
-        disabled={page===1}
-        >Prev Page</button>
-        {number.map(number=>(
-          <button onClick={()=>setPage(number)}>{number}</button>
-        )
-        )}
-        <button onClick={()=>setPage(page+1)}
-        disabled={page===totalPages}
-        > Next Page</button>
-      </div>
       <select >
         {speciePok.map(speciePok => (
           <option key={speciePok.name} onChange={filterType} name="" id=""
@@ -82,6 +69,20 @@ const Characters = () => {
         ))}
 
       </select>
+      <div >
+        <button onClick={()=>setPage(page-1)}
+        disabled={page===1}
+        >Prev Page</button>
+
+        {number.map(number=>(
+          <button onClick={()=>setPage(number)} key={number}>{number} </button>
+        )
+        )}
+        <button onClick={()=>setPage(page+1)}
+        disabled={page===totalPages}
+        > Next Page</button>
+      </div>
+      
       <ul >
         {pokemonPaginated.map((character) => (
           <li key={character.url ? character.url : character.pokemon.name}>
