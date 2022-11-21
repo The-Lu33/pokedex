@@ -8,7 +8,7 @@ const PokemonCard = ({ url }) => {
       setPokemon(res.data);
     });
   }, [url]);
-  console.log(pokemon);
+  // console.log(pokemon);
   return (
     <Link to={`/characters/${pokemon?.id}`}>
       <h2>{pokemon?.name}</h2>

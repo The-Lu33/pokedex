@@ -16,12 +16,13 @@ const CharactersDetails = () => {
     <div>
       <h2>character details</h2>
 
-      <ul>
-        <li>
+    <h2>
           {character.name}
-        </li>
+    </h2>
+      
+      
         <img src={character?.sprites?.other.dream_world.front_default} alt="" />
-      </ul>
+ 
 
     </div>
   );
