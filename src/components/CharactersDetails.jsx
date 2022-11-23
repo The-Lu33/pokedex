@@ -10,6 +10,7 @@ const CharactersDetails = () => {
       get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then(res => setCahracter(res.data))
   }, [])
+  
 
   console.log(character);
   return (

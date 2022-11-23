@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
-  const pokemonPerPage = 10;
+  const pokemonPerPage = 16;
   const lastIndex = page + pokemonPerPage;
   const firsIndex = lastIndex - pokemonPerPage;
   const totalPages = Math.ceil(characters.length / pokemonPerPage);
@@ -24,7 +24,6 @@ const Characters = () => {
   useEffect(() => {
     axios
       .get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1154")
-      //.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=20")
       .then((res) => {
         setCharacters(res.data.results);
       });
@@ -32,21 +31,26 @@ const Characters = () => {
       setspeciePok(res.data.results);
     });
   }, []);
-  console.log(speciePok);
+
+  // console.log(speciePok[0].name);
+
   const searchCharacter = () => {
     alert(characterName);
     navigate(`/characters/${characterName}`);
   };
   const filterType = (e) => {
     const url = e.target.value;
-    axios.get(url)
-    .then((res) => setCharacters(res.data.pokemon.map((pokemon) => pokemon.pokemon)));
-    console.log(e.target.value);
+    axios
+      .get(url)
+      .then((res) =>
+        setCharacters(res.data.pokemon.map((pokemon) => pokemon.pokemon))
+      );
+    // console.log(e.target.value);
   };
   return (
     <div>
-      <h2>characters</h2>
-      <p>welcome {userName}</p>
+      <h1>Pokedex</h1>
+      <p>welcome {userName}, ready to find your next pokemon</p>
       <input
         type="text"
         placeholder="search character"
@@ -62,6 +66,18 @@ const Characters = () => {
           </option>
         ))}
       </select>
+
+
+      <div className="card_container"> 
+        {pokemonPaginated.map((character) => (
+          <ul className="card_a" key={character.url ? character.url : character.pokemon.name}>
+            <PokemonCard
+              url={character.url ? character.url : character.pokemon.name}
+            />
+          </ul>
+        ))}
+      </div>
+
       <div>
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           Prev Page
@@ -80,15 +96,6 @@ const Characters = () => {
         </button>
       </div>
 
-      <ul>
-        {pokemonPaginated.map((character) => (
-          <li key={character.url ? character.url : character.pokemon.name}>
-            <PokemonCard
-              url={character.url ? character.url : character.pokemon.name}
-            />
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

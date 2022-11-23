@@ -4,9 +4,11 @@ import StartImput from "./components/StartImput";
 import Characters from "./components/Characters";
 import CharactersDetails from "./components/CharactersDetails";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import Nabvar from "./components/Nabvar";
 function App() {
   return (
     <div className="App">
+      <Nabvar />
       <Routes>
         <Route path="/" element={<StartImput />} />
 
