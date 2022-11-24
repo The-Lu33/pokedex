@@ -10,7 +10,6 @@ const StartImput = () => {
     const dispatch = useDispatch()
 
     const enterName = (e) => {
-        // si hay algo en el input ejecuta el dispatch y navega a la ruta /poke-characters y si no alert que no hay nada
         if (inputt) {
             dispatch(setStart(inputt))
             navigate('/poke-characters');
@@ -20,7 +19,7 @@ const StartImput = () => {
 
 
     }
-    // detectar el keydown y si es enter ejecuta la funcion enterName
+    // si es enter ejecuta la funcion enterName
     const handleKeyDown = (e) => {
         if (e.key === 'Enter') {
             enterName()

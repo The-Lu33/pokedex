@@ -13,10 +13,8 @@ const PokemonCard = ({ url }) => {
   }, [url]);
   // console.log(pokemon);
   const type = pokemon?.types[0].type.name;
-
-
-
   
+
   return (
     <li className={`${type} list`}>
       <Link to={`/characters/${pokemon?.id}`} className="card">
@@ -26,8 +24,13 @@ const PokemonCard = ({ url }) => {
         <div className="info">
           <div className={`name ${type}`}>
             <h2>{pokemon?.name}</h2>
-          <h5>Type</h5>
-          <h2>{type}</h2>
+
+            <h5>Type</h5>
+            {pokemon?.types.map((type, index) => (
+              <h2 className="typetext" key={index}>
+                {type.type.name}
+              </h2>
+            ))}
           </div>
           <div className={`${type} text`}>
             <div>

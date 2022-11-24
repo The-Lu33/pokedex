@@ -13,14 +13,13 @@ const Characters = () => {
   const firsIndex = lastIndex - inputNumber;
   const totalPages = Math.ceil(characters.length / inputNumber);
   const [typeOrName, setTypeOrName] = useState(false);
+  const [settingPaginate, setSettingPaginate] = useState(false);
   const number = [];
   useEffect(() => {
-
     for (let i = 1; i <= totalPages; i++) {
       number.push(i);
     }
   }, totalPages);
-
 
   const userName = useSelector((state) => state.name);
 
@@ -39,10 +38,8 @@ const Characters = () => {
     });
   }, []);
 
-  console.log(speciePok);
 
   const searchCharacter = () => {
-    // alert(characterName);
     navigate(`/characters/${characterName}`);
   };
   const filterType = (e) => {
@@ -52,9 +49,7 @@ const Characters = () => {
       .then((res) =>
         setCharacters(res.data.pokemon.map((pokemon) => pokemon.pokemon))
       );
-    // console.log(e.target.value);
   };
-
 
   // detectar cambio de input checkbox
   const handleCheckbox = () => {
@@ -66,26 +61,30 @@ const Characters = () => {
       <h2 className="welco">
         Welcome {userName}, ready to find your next pokemon
       </h2>
-      <div className="check_container" >
+      <div className="check_container">
         <span>Name</span>
         <input type="checkbox" checked={typeOrName} onChange={handleCheckbox} />
 
         <span>Type</span>
       </div>
 
-
       <div className="search_poke">
-        {
-          typeOrName ? (<div className=" select_type">
+        {typeOrName ? (
+          <div className=" select_type">
             <select onChange={filterType}>
               {speciePok.map((speciePok) => (
-                <option key={speciePok.name} name="" id="" value={speciePok.url}>
+                <option
+                  key={speciePok.name}
+                  name=""
+                  id=""
+                  value={speciePok.url}>
                   {speciePok.name}
                 </option>
               ))}
             </select>
           </div>
-          ) : (<div className="input search_characters">
+        ) : (
+          <div className="input search_characters">
             <input
               type="text"
               placeholder="search character"
@@ -94,12 +93,7 @@ const Characters = () => {
             />
             <button onClick={searchCharacter}>Search</button>
           </div>
-          )
-
-
-        }
-
-
+        )}
       </div>
 
       <div className="card_container">
@@ -115,10 +109,19 @@ const Characters = () => {
       </div>
 
       <div>
-        <input type="text" onChange={e => setInputNumber(e.target.value)} value={inputNumber}
 
-          placeholder="Text number Pokemon..." />
-        <button onClick={() => setInputNumber(inputNumber)}>Search</button>
+        <div className="pagination">
+         <button onClick={()=>setSettingPaginate(!settingPaginate)} >ajuste</button>
+          {
+            settingPaginate &&  <div>
+            <button onClick={()=> setInputNumber(4)} >4</button>
+            <button onClick={()=> setInputNumber(8)} >8</button>
+            <button onClick={()=> setInputNumber(16)} >16</button>
+            <button onClick={()=> setInputNumber(32)} >32</button>
+          </div>
+          }
+       
+        </div>
         <br />
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           Prev Page
@@ -127,6 +130,7 @@ const Characters = () => {
         {number.map((number) => (
           <button className="page" onClick={() => setPage(number)} key={number}>
             {number}{" "}
+
           </button>
         ))}
         <button
