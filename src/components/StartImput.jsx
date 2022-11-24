@@ -10,15 +10,39 @@ const StartImput = () => {
     const dispatch = useDispatch()
 
     const enterName = (e) => {
-        dispatch(setStart(inputt))
-        navigate('/poke-characters');
+        // si hay algo en el input ejecuta el dispatch y navega a la ruta /poke-characters y si no alert que no hay nada
+        if (inputt) {
+            dispatch(setStart(inputt))
+            navigate('/poke-characters');
+        }else{
+            alert('Para continuar ingresa tu nombre')
+        }
+
+
+    }
+    // detectar el keydown y si es enter ejecuta la funcion enterName
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            enterName()
+        }
     }
 
     return (
-        <div>
-            <h2>star</h2>
-            <input type="text" onChange={e=> setInput(e.target.value)} value={inputt}  />
-            <button onClick={enterName} >Start</button>
+        <div className='main'>
+            <div className='header'>
+
+            <h1>Hello Trainer!</h1>
+            <div className='img_header'>
+                <img src="./image/ash.png" alt="" />
+            </div>
+            </div>
+            <h2 className='give_name'>Give me your name to start</h2>
+            <div className='input'>
+            <input  type="text" onChange={e=> setInput(e.target.value)} value={inputt} 
+            onKeyDown={handleKeyDown} 
+            placeholder="Text your name.." />
+            <button onClick={enterName} >start</button>
+            </div>
         </div>
     );
 };

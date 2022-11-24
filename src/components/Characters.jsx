@@ -49,15 +49,21 @@ const Characters = () => {
   };
   return (
     <div>
-      <h1>Pokedex</h1>
-      <p>welcome {userName}, ready to find your next pokemon</p>
+      <h2 className="welco">Welcome {userName}, ready to find your next pokemon</h2>
+      <div className="search_poke">
+
+      <div className="input search_characters">
+
       <input
         type="text"
         placeholder="search character"
         value={characterName}
         onChange={(e) => setcharacterName(e.target.value)}
-      />
+        />
       <button onClick={searchCharacter}>Search</button>
+
+        </div>
+        <div className="select_type">
 
       <select onChange={filterType}>
         {speciePok.map((speciePok) => (
@@ -66,6 +72,8 @@ const Characters = () => {
           </option>
         ))}
       </select>
+        </div>
+        </div>
 
 
       <div className="card_container"> 

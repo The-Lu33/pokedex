@@ -106,7 +106,6 @@ body {
   height: 35%;
   padding: 10px;
   position: relative;
-  
 }
 .img > img {
   width: 100%;
@@ -125,39 +124,165 @@ body {
   transition: all 0.3s ease;
   text-decoration: none;
 }
-.name{
-  margin-top:1.5rem;
+.name {
+  margin-top: 1.5rem;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
 }
-.ragtangule{
+.ragtangule {
   width: 100%;
   height: 10rem;
 }
-.red{
+.red {
   background-color: red;
   height: 70%;
   width: 100%;
   position: relative;
 }
-.red > img{
+.red > img {
   width: 40%;
+  min-width: 200px;
   height: 100%;
   position: absolute;
   margin-top: 1.5rem;
-  margin-left: 5rem;
-  
+  margin-left: 10%;
 }
-.black{
+.black {
   background-color: black;
   height: 30%;
   width: 100%;
 }
-.circule{
+.circule {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
   position: relative;
-  background: #000;
+  background-color: #ffff;
+  border: black solid 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10%;
+  right: 2rem;
+}
+.circule > span {
+  background-color: #212121;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: black solid 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 10%;
+  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.img_header {
+  width: 150px;
+  height: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.img_header > img {
+  width: 100%;
+  height: 100%;
+}
+.input {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 10px;
+  background-color: #ffff;
+  height: 2.5rem;
+  margin-top: 1rem;
+  border: #212121 solid 1px;
+
+}
+.input > input {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #ffff;
+}
+.input > button {
+  width: 20%;
+  height: 100%;
+  
+  border: none;
+  background-color: red;
+  color: #ffff;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0 8px 8px 0;
+}
+.input > button:hover {
+  background-color: #ffff;
+  color: #212121;
+}
+.give_name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: #212121;
+  margin-top: 5rem;
+}
+  .search_poke{
+    display: flex;
+ 
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+.welco{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #212121;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.search_characters{
+  z-index: 20;
+  position: absolute;
+}
+.select_type{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #212121;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  z-index: 10;
+  position: absolute;
+  background-color: #133258;
 }
