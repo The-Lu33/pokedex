@@ -375,3 +375,9 @@ body {
 .check_container > input:checked::before {
   left: 45px;
 }
+.pages{
+  color: black;
+}
+.pages:hover{
+  color: #4da6ff;
+}

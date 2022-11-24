@@ -7,15 +7,21 @@ import { useNavigate } from "react-router-dom";
 const Characters = () => {
   const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(1);
-  const pokemonPerPage = 16;
-  const lastIndex = page + pokemonPerPage;
-  const firsIndex = lastIndex - pokemonPerPage;
-  const totalPages = Math.ceil(characters.length / pokemonPerPage);
+  const [inputNumber, setInputNumber] = useState(16);
+
+  const lastIndex = page + inputNumber;
+  const firsIndex = lastIndex - inputNumber;
+  const totalPages = Math.ceil(characters.length / inputNumber);
   const [typeOrName, setTypeOrName] = useState(false);
   const number = [];
-  for (let i = 1; i <= totalPages; i++) {
-    number.push(i);
-  }
+  useEffect(() => {
+
+    for (let i = 1; i <= totalPages; i++) {
+      number.push(i);
+    }
+  }, totalPages);
+
+
   const userName = useSelector((state) => state.name);
 
   const navigate = useNavigate();
@@ -49,6 +55,7 @@ const Characters = () => {
     // console.log(e.target.value);
   };
 
+
   // detectar cambio de input checkbox
   const handleCheckbox = () => {
     setTypeOrName(!typeOrName);
@@ -59,40 +66,40 @@ const Characters = () => {
       <h2 className="welco">
         Welcome {userName}, ready to find your next pokemon
       </h2>
-        <div className="check_container" >
-          <span>Name</span>
-          <input type="checkbox" checked={typeOrName} onChange={handleCheckbox} />
-       
-           <span>Type</span>
-        </div>
-    
+      <div className="check_container" >
+        <span>Name</span>
+        <input type="checkbox" checked={typeOrName} onChange={handleCheckbox} />
+
+        <span>Type</span>
+      </div>
+
 
       <div className="search_poke">
-      {
-        typeOrName ? ( <div className=" select_type">
-      <select onChange={filterType}>
-        {speciePok.map((speciePok) => (
-          <option key={speciePok.name} name="" id="" value={speciePok.url}>
-            {speciePok.name}
-          </option>
-        ))}
-      </select>
-    </div>
-    ): (<div className="input search_characters">
-    <input
-      type="text"
-      placeholder="search character"
-      value={characterName}
-      onChange={(e) => setcharacterName(e.target.value)}
-    />
-    <button onClick={searchCharacter}>Search</button>
-  </div>
-  )
+        {
+          typeOrName ? (<div className=" select_type">
+            <select onChange={filterType}>
+              {speciePok.map((speciePok) => (
+                <option key={speciePok.name} name="" id="" value={speciePok.url}>
+                  {speciePok.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          ) : (<div className="input search_characters">
+            <input
+              type="text"
+              placeholder="search character"
+              value={characterName}
+              onChange={(e) => setcharacterName(e.target.value)}
+            />
+            <button onClick={searchCharacter}>Search</button>
+          </div>
+          )
 
 
-      }
-        
-       
+        }
+
+
       </div>
 
       <div className="card_container">
@@ -108,12 +115,17 @@ const Characters = () => {
       </div>
 
       <div>
+        <input type="text" onChange={e => setInputNumber(e.target.value)} value={inputNumber}
+
+          placeholder="Text number Pokemon..." />
+        <button onClick={() => setInputNumber(inputNumber)}>Search</button>
+        <br />
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>
           Prev Page
         </button>
 
         {number.map((number) => (
-          <button onClick={() => setPage(number)} key={number}>
+          <button className="page" onClick={() => setPage(number)} key={number}>
             {number}{" "}
           </button>
         ))}
