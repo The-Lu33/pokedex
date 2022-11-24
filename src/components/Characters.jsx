@@ -11,6 +11,7 @@ const Characters = () => {
   const lastIndex = page + pokemonPerPage;
   const firsIndex = lastIndex - pokemonPerPage;
   const totalPages = Math.ceil(characters.length / pokemonPerPage);
+  const [typeOrName, setTypeOrName] = useState(false);
   const number = [];
   for (let i = 1; i <= totalPages; i++) {
     number.push(i);
@@ -32,10 +33,10 @@ const Characters = () => {
     });
   }, []);
 
-  // console.log(speciePok[0].name);
+  console.log(speciePok);
 
   const searchCharacter = () => {
-    alert(characterName);
+    // alert(characterName);
     navigate(`/characters/${characterName}`);
   };
   const filterType = (e) => {
@@ -47,24 +48,28 @@ const Characters = () => {
       );
     // console.log(e.target.value);
   };
+
+  // detectar cambio de input checkbox
+  const handleCheckbox = () => {
+    setTypeOrName(!typeOrName);
+  };
+
   return (
     <div>
-      <h2 className="welco">Welcome {userName}, ready to find your next pokemon</h2>
-      <div className="search_poke">
-
-      <div className="input search_characters">
-
-      <input
-        type="text"
-        placeholder="search character"
-        value={characterName}
-        onChange={(e) => setcharacterName(e.target.value)}
-        />
-      <button onClick={searchCharacter}>Search</button>
-
+      <h2 className="welco">
+        Welcome {userName}, ready to find your next pokemon
+      </h2>
+        <div className="check_container" >
+          <span>Name</span>
+          <input type="checkbox" checked={typeOrName} onChange={handleCheckbox} />
+       
+           <span>Type</span>
         </div>
-        <div className="select_type">
+    
 
+      <div className="search_poke">
+      {
+        typeOrName ? ( <div className=" select_type">
       <select onChange={filterType}>
         {speciePok.map((speciePok) => (
           <option key={speciePok.name} name="" id="" value={speciePok.url}>
@@ -72,13 +77,29 @@ const Characters = () => {
           </option>
         ))}
       </select>
-        </div>
-        </div>
+    </div>
+    ): (<div className="input search_characters">
+    <input
+      type="text"
+      placeholder="search character"
+      value={characterName}
+      onChange={(e) => setcharacterName(e.target.value)}
+    />
+    <button onClick={searchCharacter}>Search</button>
+  </div>
+  )
 
 
-      <div className="card_container"> 
+      }
+        
+       
+      </div>
+
+      <div className="card_container">
         {pokemonPaginated.map((character) => (
-          <ul className="card_a" key={character.url ? character.url : character.pokemon.name}>
+          <ul
+            className="card_a"
+            key={character.url ? character.url : character.pokemon.name}>
             <PokemonCard
               url={character.url ? character.url : character.pokemon.name}
             />
@@ -103,7 +124,6 @@ const Characters = () => {
           Next Page
         </button>
       </div>
-
     </div>
   );
 };
