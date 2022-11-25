@@ -11,41 +11,47 @@ const CharactersDetails = () => {
       .then((res) => setCahracter(res.data));
   }, []);
 
-  const typebg = character.types?.[0].type.name
+  const typebg = character.types?.[0].type.name;
   console.log(character);
-  
+
+  // porcentage de vida
+  function porcentage(valor){
+    return (valor-150)*100 / 150 + 100
+}
+
   return (
     <div className={`charactersdetails ${typebg}`}>
       <div className="poke_portade">
-
-      <div className={`poke_img`}>
-        <img src={character?.sprites?.other.dream_world.front_default} alt="" />
-      </div> 
-      <div className="poke_name">
-
-        <h2>{character.name}</h2>
-      </div>
-      <div className={`measures`}>
-        <div>
-          <span>Weight</span>
-          <h2>{character.weight}</h2>
+        <div className={`poke_img`}>
+          <img
+            src={character?.sprites?.other.dream_world.front_default}
+            alt=""
+          />
         </div>
-        <div>
-          <span>Height</span>
-          <h2>{character.height}</h2>
+        <div className="poke_name">
+          <h2>{character.name}</h2>
         </div>
-        <div>
-          <span>Base experience</span>
-          <h2>{character.base_experience}</h2>
+        <div className={`measures`}>
+          <div>
+            <span>Weight</span>
+            <h2>{character.weight}</h2>
+          </div>
+          <div>
+            <span>Height</span>
+            <h2>{character.height}</h2>
+          </div>
+          <div>
+            <span>Base experience</span>
+            <h2>{character.base_experience}</h2>
+          </div>
         </div>
-      </div>
       </div>
       {}
       <div className={`type_poke`}>
-        <h2>type</h2>
-        <div >
+        <h2>Type</h2>
+        <div className="type_text">
           {character?.types?.map((type, index) => (
-            <div key={index}>
+            <div className={type.type.name} key={index}>
               <h2>{type.type.name}</h2>
             </div>
           ))}
@@ -64,8 +70,16 @@ const CharactersDetails = () => {
         <ul>
           {character?.stats?.map((stat, index) => (
             <li key={index}>
-              <span>{stat.stat.name}: </span>
-              <span>{stat.base_stat}</span>
+              <div className="bars_stats">
+                <span>{stat.stat.name}: </span>
+                <div className="bars">
+                  <div
+                    className="bars_color"
+                    style={{ width: `${porcentage(stat.base_stat)}%` }}>
+                    <span className="bars_porcent">{stat.base_stat}/150</span>
+                  </div>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
