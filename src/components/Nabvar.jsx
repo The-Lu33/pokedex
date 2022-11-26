@@ -1,10 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Nabvar = () => {
     return (
         <div className='ragtangule'>
             <div className='red'>
-                <img src="./image/pokedex.png" alt="" />
+                <Link to="/">   
+                <img src="./image/pokedex.png" alt="pokedex" className='pokedex_img' />
+                </Link>
             </div>
             <div className='black'>
             <div className='circule'>

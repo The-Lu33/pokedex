@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const CharactersDetails = () => {
   const [character, setCahracter] = useState({});
@@ -15,12 +15,16 @@ const CharactersDetails = () => {
   console.log(character);
 
   // porcentage de vida
-  function porcentage(valor){
-    return (valor-150)*100 / 150 + 100
-}
+  function porcentage(valor) {
+    return ((valor - 150) * 100) / 150 + 100;
+  }
 
   return (
     <div className={`charactersdetails ${typebg}`}>
+      <Link className="btn_return" to="/poke-characters">
+        <img src="./image/arrow-back-.png" alt="back"  />
+      </Link>
+
       <div className="poke_portade">
         <div className={`poke_img`}>
           <img
